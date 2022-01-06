@@ -1,0 +1,49 @@
+<template>
+    <c-location-proposal ongrant={handleAccessGranted}></c-location-proposal>
+    <div class="slds-m-bottom_x-small">
+        <c-app-header trips={trips.data}></c-app-header>
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-size_2-of-3 slds-is-relative">
+            <template if:true={trips}>
+                <div class="slds-wrap">
+                    <lightning-card title={label.TripTitle} icon-name="custom:custom20">
+                        <lightning-button 
+                            label="Submit" 
+                            onclick={handleSubmitButton} 
+                            slot="actions"
+                            disabled={isLoading}>
+                        </lightning-button>
+                        <c-trip-card-list 
+                            trips={trips.data} 
+                            selected-card={tripId} 
+                            onselect={handleTripSelect}>
+                        </c-trip-card-list>
+                    </lightning-card>
+                </div>
+            </template>
+        </div>
+        <div class="slds-size_1-of-3 slds-p-left_x-small">
+            <template if:false={tripId}>
+                <template if:true={userLocation}>
+                    <c-nearest-stations 
+                        tourist-id={touristId}
+                        trips={trips.data} 
+                        latitude={userLocation.latitude}
+                        longitude={userLocation.longitude}>
+                    </c-nearest-stations>
+                </template>
+            </template>
+            <template if:true={tripId}>
+                <c-trip-details trip-id={tripId}></c-trip-details>
+            </template>
+        </div>
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+        </template>
+    </div>
+    <c-confirmation-window 
+        message={label.TouristAssignConfirmMsg} 
+        onconfirm={handleConfirm}> 
+    </c-confirmation-window>
+</template>

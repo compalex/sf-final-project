@@ -1,0 +1,9 @@
+<template>
+    <lightning-card title={label.PickTripTitle} icon-name="standard:account">
+        <lightning-button label={label.TripsPricelist} onclick={openPricelistModal} slot="actions"></lightning-button>
+    </lightning-card>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+    <c-pricelist-datatable product-wrappers={productWrappers.data} ondownload={generatePdf}></c-pricelist-datatable>
+</template>
