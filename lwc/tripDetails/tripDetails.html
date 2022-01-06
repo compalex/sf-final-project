@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title={label.TripDetailsTitle} icon-name="standard:contact">
+        <div>
+            <lightning-record-view-form record-id={tripId} object-api-name="Trip__c">
+                <div class="slds-m-around_medium">     
+                    <div class="slds-grid">
+                        <lightning-output-field field-name="Name"></lightning-output-field>
+                        <lightning-output-field field-name="Start_Date__c"></lightning-output-field>
+                        <lightning-output-field field-name="Available_seats__c"></lightning-output-field>
+                        <div class="temp-label">
+                            <p class="slds-form-element__label">{label.Temperature}</p>
+                            <p class="slds-form-element__static">{todayTemp} ℃</p>
+                        </div>
+                    </div>    
+                </div>
+            </lightning-record-view-form>
+            <lightning-map map-markers={mapMarkers} zoom-level={zoomLevel}></lightning-map>
+        </div>
+    </lightning-card>  
+</template>

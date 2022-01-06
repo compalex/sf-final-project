@@ -1,0 +1,7 @@
+<template>
+    <lightning-card title={label.NearestStationsTitle} icon-name="standard:contact">
+        <template if:true={nearestTrips.data}>
+            <lightning-map map-markers={mapMarkers}></lightning-map>
+        </template>
+    </lightning-card>
+</template>
