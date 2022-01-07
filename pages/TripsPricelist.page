@@ -1,0 +1,21 @@
+<apex:page controller="TripsPricelistController" renderAs="pdf" applyHtmlTag="false" showHeader="false" cache="true" readOnly="true">
+    <html>
+        <apex:pageBlock title="Price List">
+            <apex:pageBlockTable value="{!productWrappers}" var="product" columnsWidth="100px, 130px, 130px, 100px">
+                <apex:column headerValue="Trip" value="{!product.tripName}"/>
+                <apex:column headerValue="Departure Date" >
+                    <apex:outputText value="{0,date,MM/dd/yyyy}">
+                        <apex:param value="{!product.startDate}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headerValue="Space Point" value="{!product.spacePointName}"/>
+                <apex:column headerValue="Class" value="{!product.flightClass}"/>
+                <apex:column headerValue="Cost">
+                    <apex:outputText value="{0, number, currency}">
+                        <apex:param value="{!product.cost}"/>
+                    </apex:outputText>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </html>    
+</apex:page>
